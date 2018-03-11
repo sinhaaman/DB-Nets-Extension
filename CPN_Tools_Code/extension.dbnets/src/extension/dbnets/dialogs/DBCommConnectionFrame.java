@@ -154,7 +154,7 @@ public class DBCommConnectionFrame extends Observable{
 		
 		
 			lblDbName = new JLabel("DB Repository Name");
-			DBpanel.add(lblDbName, "2, 4, 3, 1, left, center");
+			DBpanel.add(lblDbName, "2, 4, left, center");
 		
 			textFieldDBName = new JTextField();
 			DBpanel.add(textFieldDBName, "6, 4, 9, 1, default, top");
@@ -233,7 +233,6 @@ public class DBCommConnectionFrame extends Observable{
 		}
 		
 		/**
-		 * Function to get the Frame DB Handler
 		 * @return the frameDBHandler
 		 */
 		public DButilityFunctions getFrameDBHandler() {
@@ -242,7 +241,6 @@ public class DBCommConnectionFrame extends Observable{
 
 
 		/**
-		 * Function to set the Frame DB Handler
 		 * @param frameDBHandler the frameDBHandler to set
 		 */
 		public void setFrameDBHandler(DButilityFunctions frameDBHandler) {
@@ -255,6 +253,7 @@ public class DBCommConnectionFrame extends Observable{
 		 *
 		 */
 		private class ConnectDBListener implements ActionListener{
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub

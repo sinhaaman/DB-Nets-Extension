@@ -25,8 +25,11 @@ import org.cpntools.simulator.extensions.Channel;
 import org.cpntools.simulator.extensions.Command;
 import org.cpntools.simulator.extensions.Extension;
 import org.cpntools.simulator.extensions.Instrument;
+//import org.xml.sax.SAXException;
+import org.cpntools.simulator.extensions.Invocation;
 
 import extension.dbnets.dialogs.DBCommConnectionFrame;
+import extension.dbnets.statespace.DBNetsStateSpace;
 
 /**
  * The Simulator Extension class responsible for view place marking, model handling and connection with comm and database
@@ -56,13 +59,14 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 	private boolean debug;
 	private boolean RESET = true;
 	private boolean NON_RESET = false;
+	//boolean to_proceed = false;
 	@Override
 	/*
 	 * (non-Javadoc)
 	 * @see org.cpntools.simulator.extensions.Extension#getName()
 	 */
 	public String getName() {
-		return "DB-Nets Extension";
+		return "DB-Marriage Extension";
 	}
 
 	/*
@@ -81,21 +85,31 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 	 */
 	public SimulatorExtension(){
 		//Subscribing to Simulation(500), compile declaration(300) and misc. commands(200)
-		addSubscription(new Command(500, Command.ANY));
+//		addSubscription(new Command(500, Command.ANY));
+//		addSubscription(new Command(200, Command.ANY));
+//		addSubscription(new Command(300,1));
+		//addObserver(this);
+		addSubscription(new Command(100, Command.ANY));
 		addSubscription(new Command(200, Command.ANY));
-		addSubscription(new Command(300,1));
+		addSubscription(new Command(300, Command.ANY));
+		addSubscription(new Command(400, Command.ANY));
+		addSubscription(new Command(450, Command.ANY));
+		addSubscription(new Command(500, Command.ANY));
+		addSubscription(new Command(800, Command.ANY));
+		addSubscription(new Command(9999,Command.ANY));
+		addSubscription(new Command(10000, Command.ANY));
+		
 		setDebug(false);
 		initialize();
 
 		//Adding an instrument in order to show the dialog box to the user
 		//Try to think of a default target, here the default target is Page.
-		addInstrument(new Instrument(Instrument.ToolBoxes.SIMULATION, "DB-Nets", "DBN",
+		addInstrument(new Instrument(Instrument.ToolBoxes.SIMULATION, "DBN-Sim", "DBN",
 				"DB-Nets", Instrument.Target.PAGE));
+		addInstrument(new Instrument(Instrument.ToolBoxes.SIMULATION, "DBN-SS", "SS",
+				"DB-Nets-StateSpace", Instrument.Target.PAGE));
 	}
-	
-	/**
-	 * Initializes all the maps
-	 */
+
 	private void initialize() {
 		setDeclHandler(new DeclarationHandler());
 		setPidPlaceMap(new HashMap<String, Place>());
@@ -149,6 +163,7 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 						populateViewPlaces(NON_RESET);						
 					}
 				} catch (Exception e) {
+					//to_proceed = false;
 					if(isDebug()){
 						System.out.println(e.getMessage());
 						e.printStackTrace();
@@ -249,6 +264,7 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 					setPlaceSortDone(true);
 				}
 				break;
+				//System.out.println("Hello");
 			}
 			case 12:{
 				//Transition has fired
@@ -300,7 +316,7 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 	 */
 	public void setChannel(final Channel c){
 		super.setChannel(c);
-		addObserver(new SimExtObserver());
+		addObserver(new SimExtObserver(c));
 	}
 
 	@Override
@@ -324,13 +340,36 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 
 
 	public class SimExtObserver implements Observer{
+		Channel channel;
+		
+		public SimExtObserver(Channel c) {
+			// TODO Auto-generated constructor stub
+			this.channel = c;
+		}
+
 		@Override
 		/*
 		 * called when extension instrument is clickin in CPN Tools (non-Javadoc)
 		 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 		 */
-		public void update(Observable arg0, Object arg1) {
-			getDbCommFrame().getFrame().setVisible(true);	
+		public void update(Observable source, Object value) {
+			if(value instanceof Invocation){
+				Invocation i = (Invocation) value;
+				if(i.getInstrument().getKey().equals("DBN-Sim")){
+					getDbCommFrame().getFrame().setVisible(true);
+				}
+				else if(i.getInstrument().getKey().equals("DBN-SS")){
+					DBNetsStateSpace dbnSS = new DBNetsStateSpace(getPetriNet(), getModelInstance(), getModelHandler().getModelLocation(), getViewPlaces(), getPnamePlaceMap(),
+							getPlaceQueriesMap(),getPlaceNamePidMap(),getPidPnameMap(),getPlaceSortMap(),getDbCommFrame().getFrame().getFrameDBHandler(),channel);
+					try {
+						dbnSS.testSimulator();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//System.out.println("hello");
+				}
+			}
 		}	
 	}
 
@@ -397,6 +436,7 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 		getInvViewPlaces().clear();
 		getPlaceQueriesMap().clear();
 		getPlaceSortMap().clear();
+		//to_proceed = false;
 	}
 
 	/**
@@ -572,7 +612,7 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 					temp_string = temp_string.replaceAll(": ", ":");
 					String temp_string_array[] = temp_string.split(":");
 					//CPN Tools replaces all spaces and newlines in the name of the places/transitions with "_"
-					if(temp_string_array.length >= 3 && (temp_string_array[0].equals("view_place") || temp_string_array[0].equals("relational_place")) && getPnamePlaceMap().containsKey(temp_string_array[1].replaceAll(" ","_"))){
+					if(temp_string_array.length >= 3 && temp_string_array[0].equals("view_place") && getPnamePlaceMap().containsKey(temp_string_array[1].replaceAll(" ","_"))){
 						List<String> q = new ArrayList<String>(Arrays.asList(temp_string_array[2].split(";")));
 						if(q.size() == 1){
 							q.get(0).replace(";", "");
@@ -600,8 +640,8 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 	}
 
 	/**
-	 * loads the Petri net from the model handler
-	 * @throws Exception when the Petri net couldn't be retrieved.
+	 * loads the petri net from the model handler
+	 * @throws Exception when the petri net couldn't be retrived.
 	 */
 	private void loadPetriNet() throws Exception{
 		setPetriNet(getModelHandler().getPetriNet());
@@ -873,4 +913,9 @@ public class SimulatorExtension extends AbstractExtension implements Observer {
 	public void setDebug(boolean debug) {
 		this.debug = debug;
 	}
+
+	
+
+
+
 }

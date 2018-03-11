@@ -1,5 +1,5 @@
 /**
- * This package contains the JAVA/Swing dialogs used in the extension.
+ * Package containing the Swing Dialogs.
  * @author Aman Sinha
  *
  */

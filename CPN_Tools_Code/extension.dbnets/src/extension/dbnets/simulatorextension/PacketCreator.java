@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import org.cpntools.accesscpn.engine.highlevel.instance.Binding;
 import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
 import org.cpntools.accesscpn.engine.protocol.Packet;
 import org.cpntools.accesscpn.model.Node;
@@ -11,6 +13,8 @@ import org.cpntools.accesscpn.model.Place;
 import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.simulator.extensions.Channel;
+
+import extension.dbnets.statespace.StateSpaceUtilityFunctions.Bindings;
 
 /* 
  * 	Creates packets for communicating with CPN Tools. Don't try to change the content, instead extend it 
@@ -21,7 +25,7 @@ import org.cpntools.simulator.extensions.Channel;
  * @author Aman Sinha
  *
  */
-public class PacketCreator {
+public class PacketCreator{
 	
 	/**
 	 * An instance of the Packet Creator class which can be called from outside and can be used to call other
@@ -174,6 +178,14 @@ public class PacketCreator {
 		return p;
 	}
 	
+	public Packet constructIsEnabled(
+	        final Collection<? extends org.cpntools.accesscpn.engine.highlevel.instance.Instance<? extends Transition>> tis) {
+		final Packet p = new Packet(500);
+		p.addInteger(35);
+		addNodes(p, tis);
+		return p;
+	}
+	
 	/*
 	 * This could be moved from the PacketCreator class
 	 */
@@ -188,6 +200,42 @@ public class PacketCreator {
 		Packet p = constructIsEnabled(ti.getNode().getId(), ti.getInstanceNumber());
 		Packet r = c.send(p);
 		return r.getBoolean();
+	}
+	
+	public Packet constructExecute(final String id, final int instance2) {
+		final Packet p = new Packet(500);
+		p.addInteger(12);
+		p.addString(id);
+		p.addInteger(instance2);
+		return p;
+	}
+	
+	public Packet constructManualBinding(final Bindings bindings, final Binding binding) {
+		final List<List<String>> variables = bindings.getVariables();
+		final List<List<List<String>>> values = bindings.getValues();
+		final Packet p = new Packet(500);
+		p.clearI();
+		for (int i = 0; i < variables.size(); i++) {
+			final List<String> vars = variables.get(i);
+			final List<List<String>> vals = values.get(i);
+			int j = 0;
+			outer: for (final List<String> val : vals) {
+				inner: for (int k = 0; k < vars.size(); k++) {
+					if (val.get(k).equals(binding.getValueAssignment(vars.get(k)).getValue())) {
+						if (k == vars.size() - 1) {
+							p.addInteger(j);
+							break outer;
+						}
+					} else {
+						break inner;
+					}
+				}
+				j++;
+			}
+			if (j == vals.size()) { return null; }
+		}
+		p.addBoolean(true);
+		return p;
 	}
 
 }
