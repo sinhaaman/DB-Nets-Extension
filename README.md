@@ -7,4 +7,4 @@ Supervisor:
 1. Marco Montali
 2. Andrey Rivkin
 
-For more information about the project refer [Wiki](https://gitlab.inf.unibz.it/Aman.Sinha/CPN_Aman/wikis/home).
+For more information about the project refer [Wiki](https://github.com/sinhaaman/DB-Nets-Extension/wiki).
