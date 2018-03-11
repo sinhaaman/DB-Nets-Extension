@@ -1,0 +1,36 @@
+\BOOKMARK [0][-]{chapter*.3}{Acknowledgments}{}% 1
+\BOOKMARK [0][-]{chapter*.6}{Abstract}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
+\BOOKMARK [0][-]{chapter.2}{Preliminaries}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Multiset}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{First Order Logic \(FOL\)}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.3}{Relational Schema and Database Schema}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.4}{First order logic queries}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.5}{Translation of Queries}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Coloured Petri Nets}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Example}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{Coloured Petri Nets \(CPNs\) Syntax}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.3}{Colored Petri Nets \(CPNs\) Semantics}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{Extending CPN with Relational Data}{}% 14
+\BOOKMARK [1][-]{section.4.1}{DB-Nets}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.2}{DB-Nets Modelling}{chapter.4}% 16
+\BOOKMARK [0][-]{chapter.5}{DB-nets Implementation: A CPN Tools Extension}{}% 17
+\BOOKMARK [1][-]{section.5.1}{CPN Tools Extension}{chapter.5}% 18
+\BOOKMARK [1][-]{section.5.2}{Comms/CPN}{chapter.5}% 19
+\BOOKMARK [1][-]{section.5.3}{DB Nets Implementation}{chapter.5}% 20
+\BOOKMARK [2][-]{subsection.5.3.1}{Persistence Layer}{section.5.3}% 21
+\BOOKMARK [2][-]{subsection.5.3.2}{Control Layer}{section.5.3}% 22
+\BOOKMARK [2][-]{subsection.5.3.3}{Data Logic Layer}{section.5.3}% 23
+\BOOKMARK [1][-]{section.5.4}{DB-nets example}{chapter.5}% 24
+\BOOKMARK [0][-]{chapter.6}{DB-nets Analysis : State Space}{}% 25
+\BOOKMARK [1][-]{section.6.1}{State Space}{chapter.6}% 26
+\BOOKMARK [1][-]{section.6.2}{Failed Attempts}{chapter.6}% 27
+\BOOKMARK [1][-]{section.6.3}{Compiling DB-nets into CPN}{chapter.6}% 28
+\BOOKMARK [2][-]{subsection.6.3.1}{View Place computation using Relational Places}{section.6.3}% 29
+\BOOKMARK [2][-]{subsection.6.3.2}{Transformation of Action Transitions}{section.6.3}% 30
+\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Work}{}% 31
+\BOOKMARK [0][-]{appendix.A}{Comparison of Tools}{}% 32
+\BOOKMARK [1][-]{section.A.1}{Renew \(The Reference NetWorkshop\)}{appendix.A}% 33
+\BOOKMARK [1][-]{section.A.2}{CPN Tools}{appendix.A}% 34
+\BOOKMARK [1][-]{section.A.3}{Comparison}{appendix.A}% 35
+\BOOKMARK [0][-]{appendix*.281}{Bibliography}{}% 36

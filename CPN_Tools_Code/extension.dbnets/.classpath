@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="src/" kind="src" path=""/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/org.cpntools.simulator.extensions"/>
+	<classpathentry kind="lib" path="external_jars/jgoodies-common-1.8.1.jar"/>
+	<classpathentry kind="lib" path="external_jars/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="external_jars/org.eclipse.emf.common_2.11.1.v20160208-0816.jar"/>
+	<classpathentry kind="lib" path="external_jars/postgresql-42.0.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.cpntools.accesscpn.engine.highlevel"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.cpntools.accesscpn.model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.cpntools.accesscpn.model.importer"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,42 @@
+\contentsline {chapter}{Acknowledgments}{v}{chapter*.3}
+\contentsline {chapter}{Abstract}{xi}{chapter*.6}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Preliminaries}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Multiset}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}First Order Logic (FOL)}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Relational Schema and Database Schema}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}First order logic queries}{7}{section.2.4}
+\contentsline {section}{\numberline {2.5}Translation of Queries}{8}{section.2.5}
+\contentsline {chapter}{\numberline {3}Coloured Petri Nets}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Example}{11}{section.3.1}
+\contentsline {paragraph}{\textnormal {Let us consider an example representing a simple online taxi booking service (see Figure \ref {fig:CPN_abstract_taxi_example}). To book a taxi the customer visits the web page. Upon visit, the booking service automatically generates a session identifier. To proceed with the booking process, the system checks for the available taxi. If the taxi is available, then the customer is asked to provide a phone number, pickup time and pickup address. Once the booking information is provided, the booking is finalised and the confirmation is shown to the user. If instead, no taxi is available, the user has to wait until a taxi is free.}}{11}{section*.38}
+\contentsline {section}{\numberline {3.2}Coloured Petri Nets (CPNs) Syntax}{12}{section.3.2}
+\contentsline {section}{\numberline {3.3}Colored Petri Nets (CPNs) Semantics}{18}{section.3.3}
+\contentsline {paragraph}{\textnormal {In this section, we discuss about markings and binding elements. Later, we look at a step, enabling and occurrence of steps and when a step occurs how it effects the marking of the net. We also discuss the conditions when the transition is enabled. In the end, we discuss reachable markings and state spaces.}}{18}{section*.54}
+\contentsline {subparagraph}{\textnormal {In a given marking, the enabling rule specifies when a step (consisting of a multiset of binding elements) becomes enabled, whereas the firing/occurrence rule specifies how the markings change when the enabled step occurs.}}{18}{figure.caption.57}
+\contentsline {chapter}{\numberline {4}Extending CPN with Relational Data}{29}{chapter.4}
+\contentsline {section}{\numberline {4.1}DB-Nets}{29}{section.4.1}
+\contentsline {subsubsection}{Persistence Layer}{31}{section*.91}
+\contentsline {subsubsection}{Data Logic Layer}{32}{section*.96}
+\contentsline {subsubsection}{Control Layer}{33}{section*.102}
+\contentsline {section}{\numberline {4.2}DB-Nets Modelling}{36}{section.4.2}
+\contentsline {chapter}{\numberline {5}DB-nets Implementation: A CPN Tools Extension}{39}{chapter.5}
+\contentsline {section}{\numberline {5.1}CPN Tools Extension}{39}{section.5.1}
+\contentsline {section}{\numberline {5.2}Comms/CPN}{41}{section.5.2}
+\contentsline {section}{\numberline {5.3}DB Nets Implementation}{43}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Persistence Layer}{45}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Control Layer}{45}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Data Logic Layer}{47}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}DB-nets example}{51}{section.5.4}
+\contentsline {chapter}{\numberline {6}DB-nets Analysis : State Space}{63}{chapter.6}
+\contentsline {section}{\numberline {6.1}State Space}{63}{section.6.1}
+\contentsline {section}{\numberline {6.2}Failed Attempts}{65}{section.6.2}
+\contentsline {section}{\numberline {6.3}Compiling DB-nets into CPN}{67}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}View Place computation using Relational Places}{67}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Transformation of Action Transitions}{71}{subsection.6.3.2}
+\contentsline {chapter}{\numberline {7}Conclusion and Future Work}{79}{chapter.7}
+\contentsline {chapter}{\numberline {A}Comparison of Tools}{81}{appendix.A}
+\contentsline {section}{\numberline {A.1}Renew (The Reference NetWorkshop)}{81}{section.A.1}
+\contentsline {section}{\numberline {A.2}CPN Tools}{83}{section.A.2}
+\contentsline {section}{\numberline {A.3}Comparison}{85}{section.A.3}
+\contentsline {chapter}{Bibliography}{87}{appendix*.281}

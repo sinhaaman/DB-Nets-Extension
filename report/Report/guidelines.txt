@@ -1,0 +1,51 @@
+CPN
+Example - May be like processes
+
+Db Marriage
+process - db and merging and the problems which are discussed
+
+Remind Andy
+RDB - theory
+
+
+
+Chapter 1 - Introduction
+->
+
+Chapter 2 - Theory of CPN
+->Runnig Example - Abstract Version
+->CPN version - without markings - CPN def. without the initialization function
+->Multisets
+->CPN Version - With Markings (Marked colored petri nets) - CPN def. with initialization function.
+
+-> Taxi Example - CPN version and abstract version - Theory of CPN and describing the connection with the example. Similar to jensen book
+-> use the current CPN version and then explain the different version, hardcode and predefine data domain for certain variables. and the net acquires those
+-> Semantics - Define Reachability graph and then construct
+
+
+Chapter 3 - Extending CPN with Realtional Data
+-> Motivation to add RD to CPN, why do we need to have processes to data. - From the paper - Very short
+-> limitations - data is limited, and data component can be more and more. Bring DB, taxi management after bringing the database, in abstract terms.
+-> 1st version of the paper - Explain what DB nets are - using section 2.
+-> implement concept of DB nets - my task
+-> introduce the relational extension the classical CPN
+-> -> what is RDB (query answering and first order query), What is view place - definitions, What is now in the transition.
+-> DB nets example - version 2 of the paper. extension in the CPN. executable version
+
+Chapter 4 - Implementation
+-> Architeture
+-> Data Acquisition -> getting data from outside -> using Comms -> Try to show different versions of the the functions such as Leave Phone Number and Get Random.
+-> Adding query of functionality to the net, update the db ->-> How to work to the DB?? how transitions are handled (attaching queries) how view places are handled.
+Executed by the simulator.
+-> Example of the net - final version -running along
+-> Appendix - write the doucmentation
+
+Chapter 5 - Execution and Analysis
+-> Execution of the net - step by step simulation with screenshot.
+-> State Space Generation - classical analysis techniques that one could extract. Show small examples of failing state spaces on smaller nets. Explain the approaches - 2-3 approaches taken for the same - failed. Ugly one - if success then fine else put it in failure too
+
+Chapter 6 - Conclusion
+-> Summary
+-> Future Work
+
+

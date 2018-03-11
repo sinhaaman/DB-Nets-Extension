@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE workspaceElements PUBLIC "-//CPN//DTD CPNXML 1.0//EN" "http://cpntools.org/DTD/6/cpn.dtd">
+
+<workspaceElements>
+  <generator tool="CPN Tools"
+             version="4.0.1"
+             format="6"/>
+  <cpnet>
+    <globbox>
+      <ml id="ID1413192722">fun check(toCheck) =
+if toCheck = &quot;1&quot;
+then true
+else false;
+        <layout>fun check(toCheck) =
+if toCheck = &quot;1&quot;
+then true
+else false;</layout>
+      </ml>
+      <ml id="ID1413173804">fun getRandom(connectionName,funcAPI, length) = (ConnManagementLayer.send(connectionName,&quot;getRandom&quot;^&quot;?&quot;^funcAPI^&quot;?&quot;^length,stringEncode);
+ConnManagementLayer.receive(connectionName,stringDecode));
+        <layout>fun getRandom(connectionName,funcAPI, length) = (ConnManagementLayer.send(connectionName,&quot;getRandom&quot;^&quot;?&quot;^funcAPI^&quot;?&quot;^length,stringEncode);
+ConnManagementLayer.receive(connectionName,stringDecode));</layout>
+      </ml>
+      <ml id="ID1413173296">fun exQuery(connectionName,query) = ConnManagementLayer.send(connectionName,&quot;exQuery&quot;^&quot;?&quot;^query,stringEncode);
+        <layout>fun exQuery(connectionName,query) = ConnManagementLayer.send(connectionName,&quot;exQuery&quot;^&quot;?&quot;^query,stringEncode);</layout>
+      </ml>
+      <ml id="ID1413172800">fun getFromDB(connectionName,funcAPI,t_name, c_name,length) =
+(ConnManagementLayer.send(connectionName,&quot;getFromDB&quot;^&quot;?&quot;^funcAPI^&quot;?&quot;^t_name^&quot;?&quot;^c_name^&quot;?&quot;^length,stringEncode);
+ConnManagementLayer.receive(connectionName,stringDecode));
+        <layout>fun getFromDB(connectionName,funcAPI,t_name, c_name,length) =
+(ConnManagementLayer.send(connectionName,&quot;getFromDB&quot;^&quot;?&quot;^funcAPI^&quot;?&quot;^t_name^&quot;?&quot;^c_name^&quot;?&quot;^length,stringEncode);
+ConnManagementLayer.receive(connectionName,stringDecode));</layout>
+      </ml>
+      <ml id="ID1413172316">fun connectDB(connectionName,port) = ConnManagementLayer.acceptConnection(connectionName,port);
+        <layout>fun connectDB(connectionName,port) = ConnManagementLayer.acceptConnection(connectionName,port);</layout>
+      </ml>
+      <ml id="ID1413171844">fun disconnectDB(connectionName) = ConnManagementLayer.closeConnection(connectionName);
+        <layout>fun disconnectDB(connectionName) = ConnManagementLayer.closeConnection(connectionName);</layout>
+      </ml>
+      <ml id="ID1413195527">fun exists1(table_name, id) =
+let
+val x = exQuery(&quot;dbn&quot;,&quot;SELECT COUNT(1) FROM &quot;^ table_name^&quot; WHERE id = &apos;&quot;^id^&quot;&apos;;&quot;)
+val answer = ConnManagementLayer.receive(&quot;dbn&quot;,stringDecode)
+val result = check(answer)
+in
+(result)
+end;
+        <layout>fun exists1(table_name, id) =
+let
+val x = exQuery(&quot;dbn&quot;,&quot;SELECT COUNT(1) FROM &quot;^ table_name^&quot; WHERE id = &apos;&quot;^id^&quot;&apos;;&quot;)
+val answer = ConnManagementLayer.receive(&quot;dbn&quot;,stringDecode)
+val result = check(answer)
+in
+(result)
+end;</layout>
+      </ml>
+      <ml id="ID1413191655">fun exists2(table_name, name, desc) = 
+let
+val x = exQuery(&quot;dbn&quot;,&quot;SELECT COUNT(1) FROM &quot;^ table_name^&quot; WHERE name = &apos;&quot;^name^&quot;&apos; AND descr = &apos;&quot;^ desc ^&quot;&apos;;&quot;)
+val answer = ConnManagementLayer.receive(&quot;dbn&quot;,stringDecode)
+val result = check(answer)
+in
+(result)
+end;
+        <layout>fun exists2(table_name, name, desc) = 
+let
+val x = exQuery(&quot;dbn&quot;,&quot;SELECT COUNT(1) FROM &quot;^ table_name^&quot; WHERE name = &apos;&quot;^name^&quot;&apos; AND descr = &apos;&quot;^ desc ^&quot;&apos;;&quot;)
+val answer = ConnManagementLayer.receive(&quot;dbn&quot;,stringDecode)
+val result = check(answer)
+in
+(result)
+end;</layout>
+      </ml>
+      <ml id="ID1413204105">fun affectsVP(n, y) =
+let
+val x = exQuery(&quot;dbn&quot;,&quot;SELECT COUNT(1) FROM (SELECT cpn_ss.r.id, cpn_ss.r.name, cpn_ss.s.descr FROM cpn_ss.r, cpn_ss.s WHERE cpn_ss.r.name = cpn_ss.s.name and cpn_ss.r.busy!=&apos;blah&apos;) AS query WHERE query.name = &apos;&quot;^n^&quot;&apos; AND query.descr = &apos;&quot;^ y ^&quot;&apos;;&quot;)
+val answer = ConnManagementLayer.receive(&quot;dbn&quot;,stringDecode)
+val result = check(answer)
+in
+(result)
+end;
+        <layout>fun affectsVP(n, y) =
+let
+val x = exQuery(&quot;dbn&quot;,&quot;SELECT COUNT(1) FROM (SELECT cpn_ss.r.id, cpn_ss.r.name, cpn_ss.s.descr FROM cpn_ss.r, cpn_ss.s WHERE cpn_ss.r.name = cpn_ss.s.name and cpn_ss.r.busy!=&apos;blah&apos;) AS query WHERE query.name = &apos;&quot;^n^&quot;&apos; AND query.descr = &apos;&quot;^ y ^&quot;&apos;;&quot;)
+val answer = ConnManagementLayer.receive(&quot;dbn&quot;,stringDecode)
+val result = check(answer)
+in
+(result)
+end;</layout>
+      </ml>
+      <ml id="ID1413174581">fun ADD(table_name, n, y) =
+let
+in
+exQuery(&quot;dbn&quot;,&quot;INSERT INTO &quot;^table_name^&quot; VALUES (&apos;&quot;^n^&quot;&apos;,&apos;&quot;^y^&quot;&apos;);&quot;);
+(true)
+end;
+        <layout>fun ADD(table_name, n, y) =
+let
+in
+exQuery(&quot;dbn&quot;,&quot;INSERT INTO &quot;^table_name^&quot; VALUES (&apos;&quot;^n^&quot;&apos;,&apos;&quot;^y^&quot;&apos;);&quot;);
+(true)
+end;</layout>
+      </ml>
+      <ml id="ID1413196905">fun checkAndAdd(table_name, n, y) =
+let
+val present = exists2(table_name,n,y)
+val isAdded = if present then false else ADD(table_name,n,y)
+in
+(present)
+end;
+        <layout>fun checkAndAdd(table_name, n, y) =
+let
+val present = exists2(table_name,n,y)
+val isAdded = if present then false else ADD(table_name,n,y)
+in
+(present)
+end;</layout>
+      </ml>
+      <ml id="ID1413177360">fun DEL1(table_name, n, d) = exQuery(&quot;dbn&quot;,&quot;DELETE FROM &quot;^table_name^&quot; WHERE &quot;^table_name^&quot;.name = &apos;&quot;^n^&quot;&apos; AND &quot;^table_name^&quot;.descr = &apos;&quot;^d^&quot;&apos;;&quot;);
+        <layout>fun DEL1(table_name, n, d) = exQuery(&quot;dbn&quot;,&quot;DELETE FROM &quot;^table_name^&quot; WHERE &quot;^table_name^&quot;.name = &apos;&quot;^n^&quot;&apos; AND &quot;^table_name^&quot;.descr = &apos;&quot;^d^&quot;&apos;;&quot;);</layout>
+      </ml>
+      <ml id="ID1413179802">fun DEL2(table_name, x) = exQuery(&quot;dbn&quot;,&quot;DELETE FROM &quot;^table_name^&quot; WHERE &quot;^table_name^&quot;.id = &apos;&quot;^x^&quot;&apos;;&quot;);
+        <layout>fun DEL2(table_name, x) = exQuery(&quot;dbn&quot;,&quot;DELETE FROM &quot;^table_name^&quot; WHERE &quot;^table_name^&quot;.id = &apos;&quot;^x^&quot;&apos;;&quot;);</layout>
+      </ml>
+      <block id="ID1412310166">
+        <id>Standard priorities</id>
+        <ml id="ID1412310255">val P_HIGH = 100;
+          <layout>val P_HIGH = 100;</layout>
+        </ml>
+        <ml id="ID1412310292">val P_NORMAL = 1000;
+          <layout>val P_NORMAL = 1000;</layout>
+        </ml>
+        <ml id="ID1412310322">val P_LOW = 10000;
+          <layout>val P_LOW = 10000;</layout>
+        </ml>
+      </block>
+      <block id="ID1">
+        <id>Standard declarations</id>
+        <color id="ID85042">
+          <id>UNIT</id>
+          <unit/>
+          <layout>colset UNIT = unit;</layout>
+        </color>
+        <color id="ID4">
+          <id>BOOL</id>
+          <bool/>
+        </color>
+        <color id="ID3">
+          <id>INT</id>
+          <int/>
+        </color>
+        <color id="ID1412312409">
+          <id>INTINF</id>
+          <intinf/>
+          <layout>colset INTINF = intinf;</layout>
+        </color>
+        <color id="ID1412312425">
+          <id>TIME</id>
+          <time/>
+          <layout>colset TIME = time;</layout>
+        </color>
+        <color id="ID1412322990">
+          <id>REAL</id>
+          <real/>
+          <layout>colset REAL = real;</layout>
+        </color>
+        <color id="ID5">
+          <id>STRING</id>
+          <string/>
+        </color>
+        <color id="ID1413162288">
+          <id>SSS</id>
+          <product>
+            <id>STRING</id>
+            <id>STRING</id>
+            <id>STRING</id>
+          </product>
+          <layout>colset SSS = product STRING*STRING*STRING;</layout>
+        </color>
+        <var id="ID1413164052">
+          <type>
+            <id>STRING</id>
+          </type>
+          <id>x</id>
+          <id>y</id>
+          <id>n</id>
+          <id>d</id>
+          <layout>var x,y,n,d : STRING;</layout>
+        </var>
+        <color id="ID1413169409">
+          <id>SS</id>
+          <product>
+            <id>STRING</id>
+            <id>STRING</id>
+          </product>
+          <layout>colset SS = product STRING * STRING;</layout>
+        </color>
+      </block>
+    </globbox>
+    <page id="ID6">
+      <pageattr name="SS"/>
+      <place id="ID1413159538">
+        <posattr x="-33.000000"
+                 y="148.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <text>VP</text>
+        <ellipse w="60.000000"
+                 h="40.000000"/>
+        <token x="-10.000000"
+               y="0.000000"/>
+        <marking x="0.000000"
+                 y="0.000000"
+                 hidden="false">
+          <snap snap_id="0"
+                anchor.horizontal="0"
+                anchor.vertical="0"/>
+        </marking>
+        <type id="ID1413159539">
+          <posattr x="4.000000"
+                   y="124.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">SSS</text>
+        </type>
+        <initmark id="ID1413159540">
+          <posattr x="24.000000"
+                   y="171.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1"/>
+        </initmark>
+      </place>
+      <place id="ID1413160987">
+        <posattr x="-190.000000"
+                 y="-1.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <text>P1</text>
+        <ellipse w="60.000000"
+                 h="40.000000"/>
+        <token x="-10.000000"
+               y="0.000000"/>
+        <marking x="0.000000"
+                 y="0.000000"
+                 hidden="false">
+          <snap snap_id="0"
+                anchor.horizontal="0"
+                anchor.vertical="0"/>
+        </marking>
+        <type id="ID1413160988">
+          <posattr x="-142.000000"
+                   y="-24.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">STRING</text>
+        </type>
+        <initmark id="ID1413160989">
+          <posattr x="-127.500000"
+                   y="22.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">1`(&quot;Stud1&quot;)</text>
+        </initmark>
+      </place>
+      <place id="ID1413161273">
+        <posattr x="402.000000"
+                 y="-1.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <text>P2</text>
+        <ellipse w="60.000000"
+                 h="40.000000"/>
+        <token x="-10.000000"
+               y="0.000000"/>
+        <marking x="0.000000"
+                 y="0.000000"
+                 hidden="false">
+          <snap snap_id="0"
+                anchor.horizontal="0"
+                anchor.vertical="0"/>
+        </marking>
+        <type id="ID1413161274">
+          <posattr x="434.000000"
+                   y="-24.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">SS</text>
+        </type>
+        <initmark id="ID1413161275">
+          <posattr x="458.000000"
+                   y="22.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1"/>
+        </initmark>
+      </place>
+      <trans id="ID1413161870"
+             explicit="false">
+        <posattr x="-33.000000"
+                 y="0.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <text>T1</text>
+        <box w="60.000000"
+             h="40.000000"/>
+        <binding x="7.200000"
+                 y="-3.000000"/>
+        <cond id="ID1413161871">
+          <posattr x="-72.000000"
+                   y="31.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1"/>
+        </cond>
+        <time id="ID1413161872">
+          <posattr x="11.500000"
+                   y="31.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1"/>
+        </time>
+        <code id="ID1413165595">
+          <posattr x="74.000000"
+                   y="-101.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">input (x,n,d);
+output (y);
+action
+let
+val y = &quot;Professor&quot;
+in
+ADD(&quot;cpn_ss.s&quot;, n, y);
+DEL1(&quot;cpn_ss.s&quot;, n, d);
+DEL2(&quot;cpn_ss.t&quot;, x);
+(y)
+end</text>
+        </code>
+        <priority id="ID1413161875">
+          <posattr x="-101.000000"
+                   y="-31.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1"/>
+        </priority>
+      </trans>
+      <arc id="ID1413163418"
+           orientation="TtoP"
+           order="1">
+        <posattr x="0.000000"
+                 y="0.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <arrowattr headsize="1.200000"
+                   currentcyckle="2"/>
+        <transend idref="ID1413161870"/>
+        <placeend idref="ID1413161273"/>
+        <annot id="ID1413163419">
+          <posattr x="187.000000"
+                   y="11.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">(x,y)</text>
+        </annot>
+      </arc>
+      <arc id="ID1413166942"
+           orientation="PtoT"
+           order="2">
+        <posattr x="0.000000"
+                 y="0.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <arrowattr headsize="1.200000"
+                   currentcyckle="2"/>
+        <transend idref="ID1413161870"/>
+        <placeend idref="ID1413159538"/>
+        <annot id="ID1413166943">
+          <posattr x="-64.500000"
+                   y="81.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">(x,n,d)</text>
+        </annot>
+      </arc>
+      <arc id="ID1413168037"
+           orientation="PtoT"
+           order="1">
+        <posattr x="0.000000"
+                 y="0.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <arrowattr headsize="1.200000"
+                   currentcyckle="2"/>
+        <transend idref="ID1413161870"/>
+        <placeend idref="ID1413160987"/>
+        <annot id="ID1413168038">
+          <posattr x="-101.500000"
+                   y="11.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">x</text>
+        </annot>
+      </arc>
+      <arc id="ID1413203385"
+           orientation="TtoP"
+           order="1">
+        <posattr x="0.000000"
+                 y="0.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <arrowattr headsize="1.200000"
+                   currentcyckle="2"/>
+        <transend idref="ID1413161870"/>
+        <placeend idref="ID1413159538"/>
+        <annot id="ID1413203386">
+          <posattr x="27.000000"
+                   y="74.000000"/>
+          <fillattr colour="White"
+                    pattern="Solid"
+                    filled="false"/>
+          <lineattr colour="Black"
+                    thick="0"
+                    type="Solid"/>
+          <textattr colour="Black"
+                    bold="false"/>
+          <text tool="CPN Tools"
+                version="4.0.1">if affectsVP(n,y)
+then
+1`(x,n,d)
+else
+empty</text>
+        </annot>
+      </arc>
+      <constraints/>
+      <hguideline id="ID1413159603"
+                  y="1.000000">
+        <guideline_elm idref="ID1413160987"/>
+        <guideline_elm idref="ID1413161273"/>
+      </hguideline>
+      <vguideline id="ID1413159577"
+                  x="-33.000000">
+        <guideline_elm idref="ID1413159538"/>
+        <guideline_elm idref="ID1413161870"/>
+      </vguideline>
+      <Aux id="ID1413159783">
+        <posattr x="-294.000000"
+                 y="180.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <label/>
+        <text>view_place : SS.VP : SELECT cpn_ss.r.id, cpn_ss.r.name, cpn_ss.s.descr FROM cpn_ss.r, cpn_ss.s WHERE cpn_ss.r.name = cpn_ss.s.name and cpn_ss.r.busy!=&apos;blah&apos;;</text>
+      </Aux>
+      <Aux id="ID1413193720">
+        <posattr x="-294.000000"
+                 y="-126.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <label/>
+        <text>connectDB(&quot;dbn&quot;,9000)</text>
+      </Aux>
+      <Aux id="ID1413194084">
+        <posattr x="-294.000000"
+                 y="-152.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <label/>
+        <text>disconnectDB(&quot;dbn&quot;,9000)</text>
+      </Aux>
+    </page>
+    <instances>
+      <instance id="ID2149"
+                page="ID6"/>
+    </instances>
+    <options>
+      <option name="realtimestamp">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="fair_be">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="global_fairness">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="outputdirectory">
+        <value>
+          <text>&lt;same as model&gt;</text>
+        </value>
+      </option>
+      <option name="extensions.9999.enable">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="extensions.10002.enable">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="repavg">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="repciavg">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="repcount">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="repfirstval">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="replastval">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="repmax">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="repmin">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="repssquare">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="repssqdev">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="repstddev">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="repsum">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="repvariance">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="avg">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="ciavg">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="count">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="firstval">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="lastval">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="max">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="min">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="ssquare">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="ssqdev">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="stddev">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="sum">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="variance">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="firstupdate">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="interval">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="lastupdate">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="untimedavg">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="untimedciavg">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="untimedcount">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="untimedfirstval">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="untimedlastval">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="untimedmax">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="untimedmin">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="untimedssquare">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="untimedssqdev">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="untimedstddev">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+      <option name="untimedsum">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="untimedvariance">
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </option>
+    </options>
+    <binders>
+      <cpnbinder id="ID2222"
+                 x="442"
+                 y="254"
+                 width="806"
+                 height="507">
+        <sheets>
+          <cpnsheet id="ID2215"
+                    panx="-159.000000"
+                    pany="-9.000000"
+                    zoom="1.000000"
+                    instance="ID2149">
+            <zorder>
+              <position value="0"/>
+            </zorder>
+          </cpnsheet>
+        </sheets>
+        <zorder>
+          <position value="0"/>
+        </zorder>
+      </cpnbinder>
+    </binders>
+    <monitorblock name="Monitors"/>
+    <IndexNode expanded="true">
+      <IndexNode expanded="false"/>
+      <IndexNode expanded="false"/>
+      <IndexNode expanded="false">
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false">
+          <IndexNode expanded="false">
+            <IndexNode expanded="false">
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+            </IndexNode>
+            <IndexNode expanded="false">
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+              <IndexNode expanded="false"/>
+            </IndexNode>
+          </IndexNode>
+          <IndexNode expanded="false">
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+            <IndexNode expanded="false"/>
+          </IndexNode>
+        </IndexNode>
+        <IndexNode expanded="false">
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+        </IndexNode>
+      </IndexNode>
+      <IndexNode expanded="false">
+        <IndexNode expanded="false"/>
+      </IndexNode>
+      <IndexNode expanded="false">
+        <IndexNode expanded="true"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false"/>
+        <IndexNode expanded="false">
+          <IndexNode expanded="true"/>
+          <IndexNode expanded="true"/>
+          <IndexNode expanded="true"/>
+        </IndexNode>
+        <IndexNode expanded="false">
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
+          <IndexNode expanded="true"/>
+        </IndexNode>
+      </IndexNode>
+      <IndexNode expanded="false"/>
+      <IndexNode expanded="true"/>
+    </IndexNode>
+  </cpnet>
+</workspaceElements>

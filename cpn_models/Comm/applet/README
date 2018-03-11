@@ -1,0 +1,21 @@
+Communication between CPN Tools simulator and applet
+====================================================
+
+The Java files in this directory can be compiled with J2SE 1.4.2 which
+can be downloaded from:
+http://java.sun.com/j2se/index.jsp
+
+The applet in this directory and CPN Tools must be running on the same
+computer in order for the communication to work.
+
+To start communiction between the simulator and the applet:
+1) Start CPN Tools
+2) Load the Sample Net DiningPhilosophers_COMM.cpn
+3) Apply the Rewind tool to the net to return to the initial marking 
+4) Load the applet on the computer where CPN Tools is running, e.g. by
+   double-clicking on the applet.html file
+5) Apply the Single Step simulation tool to the Waiting transition
+6) Enter 9000 as the Port Number in the GUI for the applet
+7) Press the Start button in the applet
+8) Run a simulation of the CP-net and observe how the GUI for the
+   applet reflects the marking of the CP-net.

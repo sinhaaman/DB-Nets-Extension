@@ -1,0 +1,59 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces An abstract model for booking a taxi\relax }}{12}{figure.caption.37}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces CPN model for taxi booking\relax }}{12}{figure.caption.39}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces CPN model for taxi booking\relax }}{18}{figure.caption.57}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces A state of the CPN model for taxi booking\relax }}{22}{figure.caption.68}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Revised CPN model showing a state for taxi booking example\relax }}{26}{figure.caption.80}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces State Space for CPN model in Figure \ref {fig:CPN_Taxi_Booking_simple}\relax }}{26}{figure.caption.81}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Figure \ref {fig:DBN_PN_Informal} captures the process part informally whereas figure \ref {fig:DBN_DataModel_Informal} captures the data model informally for the taxi booking example.\relax }}{29}{figure.caption.84}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Framework of the DB-Net model\relax }}{30}{figure.caption.86}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces A db-net representing the taxi booking process\relax }}{31}{figure.caption.90}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces A db-net representing the taxi booking process modelled in CPN Tools\relax }}{36}{figure.caption.111}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Interconnectivity between CPN Tools GUI and Simulator\relax }}{40}{figure.caption.119}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Interconnectivity between Access/CPN and Simulator\relax }}{40}{figure.caption.120}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Interconnectivity between GUI, Simulator and Extension\relax }}{40}{figure.caption.121}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Connectivity between CPN Tools extension, external environment and CPN Tools\relax }}{41}{figure.caption.124}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Overall architecture of Comms/CPN\relax }}{42}{figure.caption.126}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Communication between JAVA/CPN and CPN model\relax }}{42}{figure.caption.128}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces The mapping of DB-net framework\relax }}{44}{figure.caption.132}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Interconnectivity between different components\relax }}{44}{figure.caption.134}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Data logic layer division\relax }}{45}{figure.caption.135}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Example of view place\relax }}{46}{figure.caption.140}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Modelling view place and action transition\relax }}{47}{figure.caption.147}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Communication Pattern of CPN Tools extensions\relax }}{49}{figure.caption.152}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Database Schema for taxi booking example\relax }}{51}{figure.caption.160}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces CPN model for taxi booking example\relax }}{52}{figure.caption.162}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces View Place, Action Transition and Read Arcs representation\relax }}{52}{figure.caption.163}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Action transitions: Leave Phone Number and Leave Pickup Data\relax }}{53}{figure.caption.170}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces S\_ID Generator\relax }}{55}{figure.caption.175}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces $\mathit {Add\ Booking}$ transition\relax }}{56}{figure.caption.179}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Executable DB-net model for taxi booking\relax }}{60}{figure.caption.202}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Interface to provide connection parameters\relax }}{61}{figure.caption.203}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Abstract net for taxi booking example\relax }}{63}{figure.caption.208}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Expected state space for taxi booking example in Figure \ref {fig:DBN_SS_Faulty_Net}\relax }}{64}{figure.caption.210}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces State Space calculated by CPN Tools for the net in Figure \ref {fig:DBN_SS_Faulty_Net}\relax }}{65}{figure.caption.213}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Shared architecture between extension and JAVA/CPN\relax }}{66}{figure.caption.220}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Database Schema : organisation\relax }}{68}{figure.caption.224}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces DB-nets: one view place\relax }}{68}{figure.caption.226}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces DB-nets: computing a view place using relational places\relax }}{69}{figure.caption.229}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces DB-nets: two view places\relax }}{70}{figure.caption.231}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces DB-nets: computing two view places using relational places\relax }}{70}{figure.caption.234}
+\contentsline {figure}{\numberline {6.10}{\ignorespaces DB-nets: add operation\relax }}{71}{figure.caption.238}
+\contentsline {figure}{\numberline {6.11}{\ignorespaces DB-nets: modelling add operation using relational places\relax }}{72}{figure.caption.240}
+\contentsline {figure}{\numberline {6.12}{\ignorespaces DB-nets: delete operation\relax }}{73}{figure.caption.242}
+\contentsline {figure}{\numberline {6.13}{\ignorespaces DB-nets: modelling delete operation using relational places\relax }}{73}{figure.caption.243}
+\contentsline {figure}{\numberline {6.14}{\ignorespaces DB-nets: action containing multiple operations\relax }}{74}{figure.caption.246}
+\contentsline {figure}{\numberline {6.15}{\ignorespaces DB-nets: modelling all operations sequentially using relational places\relax }}{75}{figure.caption.247}
+\contentsline {figure}{\numberline {6.16}{\ignorespaces Taxi Booking : Transformed net using relational places\relax }}{76}{figure.caption.249}
+\contentsline {figure}{\numberline {6.17}{\ignorespaces Calculated state space for the model (in Figure \ref {fig:DBN_SS_Taxi_Booking_model}) using state space tool\relax }}{76}{figure.caption.251}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces CPN model to find the GCD of given numbers in Renew\relax }}{82}{figure.caption.261}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Simulation Traces of CPN model in Figure \ref {fig:Comparison_Tools_Renew_Net_GCD}\relax }}{83}{figure.caption.264}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces CPN model to find the GCD of given numbers in CPN Tools\relax }}{84}{figure.caption.269}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Simulation Traces of CPN model in Figure \ref {fig:Comparison_Tools_CPN_Net_GCD}\relax }}{85}{figure.caption.273}

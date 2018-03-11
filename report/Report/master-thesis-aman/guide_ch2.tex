@@ -1,0 +1,233 @@
+\chapter{Preliminaries}
+\label{ch:preliminaries}
+
+\paragraph*{\textnormal{In this chapter, we discuss the notation of multiset which we use in later chapters. Later, we discuss about first order logic (FOL) syntax and semantics, and then discuss first order logic queries followed by the discussion of translation of queries. For multiset we use \cite{DBLP:books/daglib/CPN_Book} and for understanding the basic concepts of databases, we use \cite{DBLP:books/aw/found_DB}, \cite{Diego_Calvanese_Slides_Database} and \cite{DB_all_lectures}. Here we talk about the FOL with equality which is used in FOL queries.}}
+
+\section{Multiset}
+\label{sec:preliminaries_multiset}
+\subparagraph*{\textnormal{A \textit{\textbf{multiset} m} over a non-empty set $S$ can be thought as a function which maps an element $s \in S$ to a natural number in $\mathbb{N}$ which denotes the number of appearances of the element $s$. The natural number $m(s)$ is also called coefficient of $s$ in $m$. We use ${}^{\backprime}$ as the infix operator. The number preceding the symbol ${}^{\backprime}$ signifies the coefficient of $s$ in $m$ while the tuple succeeding the symbol represents the element. Let us formally define multisets:
+}}
+
+\begin{defs}
+	\label{defs:preliminaries_Multiset}
+	Let $S = \{ s_{1}, s_{2}, s_{3}, . . . \}$ be a non-empty set. A \textbf{multiset} over S is
+	a function $m : S \rightarrow \mathbb{N}$ that maps each element $s \in S$ into a non-negative integer $m(s) \in \mathbb{N}$ called the \textbf{number of appearances} (coefficient) of $s, where s \in S$, in $m$. A multiset $m$ can also be written as a sum:
+	\begin{equation*}
+	_{}^{++}\sum\limits_{s \in S}^{ } {m(s)}^{\backprime}s = {m(s_{1})}^{\backprime} s_{1} +\!\!+ \ {m(s_{2})}^{\backprime}s_{2} +\!\!+ \ {m(s_{3})}^{\backprime} s_{3} +\!\!+ \ldots
+	\end{equation*}
+	\textbf{Membership, addition, scalar multiplication, comparison,} and \textbf{size} are defined
+	as follows, where $m_{1}, m_{2}$, and m are multisets, and $n \in \mathbb{N}$ :
+	\begin{enumerate}
+		\item $\forall s \in S$ : $s \in m \Leftrightarrow  m(s) > 0$. (Membership)
+		\item $\forall s \in S$ : $(m_{1}$ $+\!+$ $m_{2})(s)$ = $m_{1}(s) + m_{2}(s)$. (Addition)
+		\item $\forall s \in S : (n$ $\ast\!\ast$ $m)(s) = n$ $\ast$ $m(s)$. (Scalar multiplication)
+		\item $m_{1}$ $\ll=$ $m_{2}$ $\Leftrightarrow \forall s \in S : m_{1}(s) \leq m_{2}(s)$. (Comparison)
+		\item $\left | m \right | = \sum\limits_{s \in S} m(s)$. (Size)
+		\item A multiset m is \textbf{infinite} if $\left | m \right | = \infty$. Otherwise m is \textbf{finite}. When $m_{1} \ll= m_{2}$, \textbf{subtraction} is defined as:
+		\begin{center}
+			$\forall s \in S$ : $(m_{2}$ $--$ $m_{1})(s) = m_{2}(s) - m{1}(s).$
+		\end{center}
+	\end{enumerate}
+	The set of all multisets over S, i.e., the multiset type over S is denoted $S_{MS}$. The
+	empty multiset over S is denoted by $\emptyset_{MS}$ and is defined by $\emptyset_{MS}(s) = 0$ for all $s \in S$.
+\end{defs}
+
+\subparagraph*{\textnormal{This covers the basic definition of multisets and some of their operations namely addition, scalar multiplication, subtraction, size etc. In this definition there are new symbols defined for addition ($+\!+$), scalar multiplication ($\ast\!\ast$), comparison ($\ll=$) and subtraction ($--$). In further discussions, we would use these notations.}}
+
+\section{First Order Logic (FOL)}
+\label{sec:preliminaries_FOL}
+\paragraph*{\textnormal{In this section, we discuss about the syntax and semantics of first order logic. First order logic can be used to represent the objects of the domain of discourse (the universe), about the properties of the objects and their relationships\footnote{properties correspond to the unary predicate and the relations corresponds to \textit{n}-ary predicate}. Functions and constants are also included in first order logic.}}
+
+\subsection*{Syntax}
+\subparagraph*{\textnormal{Variables $x_{1},x_{2},\ldots,x_{n}$ are called individual variables which denote single objects. The set of variables is denoted by:
+		\begin{equation*}
+		Vars = \{x_{1},x_{2},\ldots,x_{n}\}
+		\end{equation*}
+		A function symbol of arity $k$, where $k \geq 0$ and $x_{1},x_{2},\ldots,x_{k}$ are variables, is denoted as:
+		\begin{equation*}
+		f^{k}(x_{1},x_{2},\ldots,x_{k})
+		\end{equation*}
+}}
+
+\begin{defs}
+	The set of \textbf{Terms} is defined inductively as the smallest possible set satisfying:
+	\begin{enumerate}
+		\item Each variable is a term . i.e. Vars $\subseteq$ Terms;
+		\item If $t_{1},t_{2},\ldots,t_{k} \in Terms$ and $f^{k}$ is a k-ary function symbol, then $f^k(t_{1},t_{2},\ldots,t_{k}) \in Terms$.
+	\end{enumerate}	 
+\end{defs}
+
+\begin{defs}
+	The set of \textbf{Formulas} is defined inductively as the smallest possible set satisfying:
+	\begin{enumerate}
+		\item If $t_{1},t_{2},\ldots,t_{k} \in Terms$ and $P^{k}$ is a k-ary predicate \footnote{a predicate of arity 0 is a proposition}, then $P^{k}(t_{1},t_{2},\ldots,t_{k}) \in$ Formulas(atomic formulas).
+		\item If $t_{1},t_{2} \in Terms$, then $t_{1} = t_{2} \in Formulas$. (equality)
+		\item If $\varphi \in Formulas$ and $\varphi \in Formulas$ then
+		\begin{itemize}
+			\item $\neg\varphi \in Formulas$
+			\item $\varphi \wedge \psi \in Formulas $
+			\item $\varphi \wedge \psi \in Formulas $
+			\item $\varphi \rightarrow \psi \in Formulas$
+		\end{itemize}
+		\item If $\varphi \in Formulas$ and $x \in Vars$ then
+		\begin{itemize}
+			\item $\exists x.\varphi \in Formulas$
+			\item $\forall x.\varphi \in Formulas$
+		\end{itemize} 
+	\end{enumerate}	 
+\end{defs}
+
+\subsection*{Semantics}
+\paragraph*{\textnormal{Following the FOL syntax, we will have a look at the semantics of the language.}}
+\begin{defs}
+	Given an \textbf{alphabet} of predicates $P_{1},P_{2},\dots$ and function symbols $f_{1},f_{2},\ldots$ each with an associated arity, a FOL \textbf{interpretation} is:
+	\begin{equation*}
+	I = (\Delta^{I},\cdot^{I})
+	\end{equation*}
+	where:
+	\begin{itemize}
+		\item $\Delta^{I}$ is the interpretation domain (a non-empty set of objects);
+		\item $\cdot^{I}$ is the interpretation function that interprets predicates and function symbols as:
+		\begin{itemize}
+			\item if $P_{i}$ is a k-ary predicate, then $P_{i}^{I} \subseteq \Delta^{I} \times \ldots \times \Delta^{I}$ (k times)
+			\item if $f_{i}$ is a k-ary function, $k \geq 1$, then $f_{i}^{I} : \Delta^{I} \times \ldots \times \Delta^{I} \rightarrow \Delta^{I}$
+			\item if $f_{i}$ is a constant, then $f_{i}^{I} : () \rightarrow \Delta^{I}$, which means $f_{i}$ denotes exactly one object in the domain.
+		\end{itemize} 
+	\end{itemize}
+\end{defs}
+
+\begin{defs}
+	Given an interpretation I, an \textbf{assignment} is a function
+	\begin{equation*}
+	\alpha : Vars \rightarrow \Delta^{I}
+	\end{equation*}
+	that assigns to each variable $x \in Vars$ an object $\alpha(x) \in \Delta^{I}$. We could extend the notion of assignments to terms. We define a function $\hat{\alpha} : Terms \rightarrow \Delta^{I}$ inductively as follows:
+	\begin{itemize}
+		\item $\hat{\alpha}(x) = \alpha (x)$, if $x \in Vars$
+		\item $\hat{\alpha}(f(t_{1},\ldots,t_{k})) = f^{I}(\hat{\alpha}(t_{1}),\ldots,\hat{\alpha}(t_{k}))$
+		\item for constants $\hat{\alpha}(c) = c^{I}$
+	\end{itemize}
+\end{defs}
+
+\subparagraph*{\textnormal{We define a FOL formula $\varphi$ as true in a interpretation $I$ with respect to an assignment $\alpha$, written $I,\alpha \models \varphi$:}}
+\begin{equation*}
+\begin{cases}
+I,\alpha \models \varphi & if $(\hat{\alpha}(t_{1}),\ldots,\hat{\alpha}(t_{k})) \in P^{I}$\\
+I,\alpha \models t_{1} = t_{2} &  if $\hat{\alpha}(t_{1}) = \hat{\alpha}(t_{2})$\\
+I,\alpha \models \neg \varphi & if $I,\alpha \nvDash \varphi$ \\
+I,\alpha \models \varphi \wedge \psi & if $I,\alpha \models \varphi$ and $I,\alpha \models \psi$\\
+I,\alpha \models \varphi \vee \psi & if $I,\alpha \models \varphi$ or $I,\alpha \models \psi$\\
+I,\alpha \models \varphi \rightarrow \psi & if $I,\alpha \models \varphi$ implies $I,\alpha \models \psi$\\
+I,\alpha \models \exists x .\varphi & if for some $a \in \Delta^{I}$ we have $I,\alpha\lbrack x \mapsto a \rbrack \models \varphi$\\
+I,\alpha \models \forall x .\varphi & if for every $a \in \Delta^{I}$ we have $I,\alpha\lbrack x \mapsto a \rbrack \models \varphi$
+\end{cases}
+\end{equation*}
+
+\subparagraph*{\textnormal{where $\alpha\lbrack x \mapsto a \rbrack$ stands for the new assignment obtained from $\alpha$ as follows:}}
+\begin{equation*}
+\begin{aligned}
+\alpha\lbrack x \mapsto a \rbrack(x) &= a \\
+\alpha\lbrack x \mapsto a \rbrack(y) &= \alpha (y),\hspace*{1 cm} \textnormal{for }y \neq x
+\end{aligned}
+\end{equation*}
+
+\section{Relational Schema and Database Schema}
+\label{sec:preliminaries_relational_db_schema}
+
+\paragraph*{\textnormal{In this section, we discuss about relational schema and database schema, which constitute the basics of database theory. Later, we discuss first order logic queries and answer to a FOL query. We also present an example showing conversion of FOL queries to SQL queries.}}
+
+\subparagraph*{\textnormal{We assume that a \textit{data type} is an infinite set and is defined in a set theoretic manner. For example, \textit{int}, \textit{strings} etc. are \textit{data types}. Inspired from \cite{DBLP:books/aw/found_DB}, we assume \textit{domain} as a countably infinite set $\Delta$ of data types, \textit{attributes} as a finite set \textit{U}, and a mapping function $dom:U\rightarrow\Delta$ and $dom(A)$ is called domain of $A$, where $A \in U$.}}
+
+\begin{defs}
+	\label{defs:preliminaries_dbn_sort_function}
+	A function \textit{sort} is defined as $sort:R^{n}\rightarrow{\mathcal{P}^{fin}}(U)$, where ${\mathcal{P}^{fin}}$ is the finitary powerset\footnote{the set of finite subsets} of attributes, $R^{n}$ is the set of relation schema and $U$ is the finite set of attributes.
+\end{defs}
+
+\subparagraph*{\textnormal{The sort of a relation schema \textit{R} is simply written as \textit{sort(R)} and the arity is written as $arity(R) = |\textit{sort(R)}|$. A relational schema (\textit{R}) and set of attributes(\textit{U}) together make up the structure of the table. $R[U]$ is used to represent $sort(R) = U$, and $R[n]$ to represent $arity(R) = n$.}}
+
+\begin{defs}
+	\label{defs:preliminaries_dbn_database_schema}
+	For a given domain $\Delta$, a \textbf{database schema} is a non empty finite set $\mathcal{R}$ of relational schemas, written as:
+	\begin{equation*}
+	\mathcal{R} = \{R_{1}[U_{1}],\ldots,R_{n}[U_{n}]\}
+	\end{equation*}
+	where $R_{1},\ldots,R_{n}$ are relational schemas and $U_{1},\ldots,U_{n}$ are attributes
+\end{defs}
+
+\section{First order logic queries}
+\begin{defs}
+	A first order logic \textbf{query} is an (open) FOL formula. Let $\varphi$ be a first order logic query with free variables $(x_{1},\ldots,x_{k})$, the query is written as:
+	\begin{equation*}
+	\varphi (x_{1},\ldots,x_{k})
+	\end{equation*}
+	and we say that the query has arity k.
+\end{defs}
+\paragraph*{\textnormal{For a given interpretation $I$, the only interesting assignments are those which map the variables $x_{1},\ldots,x_{k}$. We write an assignment $\alpha$ such that $\alpha(x_{i}) = a_{i},$ for $i = 1,\ldots,k$ as $\langle a_{1},\ldots,a_{k} \rangle$.}}
+
+\begin{defs}
+	Given an interpretation $I$, the \textbf{answer to a query} $\varphi (x_{1},\ldots,x_{k})$ is :
+	\begin{equation*}
+	{\varphi (x_{1},\ldots,x_{k})}^{I} = \{(a_{1},\ldots,a_{k}) | I,\langle a_{1},\ldots,a_{k} \rangle \models \varphi (x_{1},\ldots,x_{k}) \}
+	\end{equation*}
+\end{defs}
+
+\subparagraph*{\textnormal{Notation $\varphi ^ I$ is used which keeps the free variables implicit, and $\varphi(I)$ is used for making apparent that $\varphi$ becomes a function from interpretations to set of tuples.}}
+
+\begin{defs}
+	A \textbf{first order logic boolean query} is a first order logic query without free variables.
+\end{defs}
+
+\subparagraph*{\textnormal{The answer to the boolean query is defined as:
+		\begin{equation*}
+		{\varphi()}^{I} = \{() | I,\langle \rangle \models \varphi() \}
+		\end{equation*}
+		such an answer is :
+		\begin{itemize}
+			\item $\mathit{True}$, the empty tuple (), if $I \models \varphi$
+			\item $\mathit{False}$, the empty set $\emptyset$, if $I \nvDash \varphi$
+\end{itemize}}}
+
+\subparagraph*{\textnormal{\textit{Conjunctive Queries (CQ)} are an important class of queries which have been studied extensively in database theory. As defined in \cite{Diego_Calvanese_Slides_Database}, A \textit{conjunctive query (CQ)} is a FOL query which contains only conjunction and existential quantification. Conjunctive queries do not contain negation, universal quantification or function symbols besides constants. In practice, the relational database engines are specifically optimised for conjunctive queries. Conjunctive queries corresponds to SQL select-project-join (SPJ) queries which are most frequently asked queries.}}
+
+\begin{defs}
+\label{defs:prelim_conjunctive_queries}
+	A conjunctive query is a FOL query of the form
+	\[ \exists \vec{y}.conj(\vec{x},\vec{y})\]
+	where $\mathit{conj(\vec{x},\vec{y})}$ is a conjunction of atoms and equalities, over the free variables $\mathit{\vec{x}}$, the existentially quantified variables $\mathit{\vec{y}}$, and possibly constants.
+\end{defs}
+\section{Translation of Queries}
+\paragraph*{\textnormal{We can translate some FOL queries into SQL and vice versa. Let us consider a \textbf{taxi} relational schema, which stores relevant information about taxis in a taxi booking system, represented as:
+\begin{equation*}
+	taxi(TID, PlateNum, isFree)
+\end{equation*}
+where $\mathit{TID}$ is an \textit{integer} representing taxi id, $\mathit{PlateNum}$ is a \textit{string} for plate number of the taxi and $\mathit{isFree}$ is a \textit{boolean} representing the status of a taxi, $\mathit{True}$ for free and $\mathit{False}$ for occupied. In order to find the taxis which are free the FOL query can be written as:
+\begin{equation*}
+taxi(TID, PlateNum, True)
+\end{equation*}
+where TID and Platenum are free variables in the query. The corresponding SQL translation for the above FOL query is:
+}}
+\begin{verbatim}
+SELECT TID, PlateNum FROM taxi WHERE isFree = TRUE;
+\end{verbatim}
+\subparagraph*{\textnormal{Similarly, other queries can be translated from FOL queries to SQL queries. As shown in \cite{DB_all_lectures}, not all FOL queries can be expressed in SQL.}}
+
+\subparagraph*{\textnormal{For conjunctive queries, let us take an example (taken from \cite{Diego_Calvanese_Slides_Database}) of a database schema which contains three relational schemas:}}
+\begin{equation*}
+	Person(name, age), \quad Lives(person,city), \quad Manages(boss,employee)
+\end{equation*}
+\subparagraph*{\textnormal{If we want to write a query which returns the name and age of all persons that live in the same city as their boss. The conjunctive query that can be formed is:}}
+\begin{equation*}
+	\exists b,c.Person(n,a) \wedge Manages(b,n) \wedge Lives(n,c) \wedge Lives(b,c)
+\end{equation*}
+\subparagraph*{\textnormal{where $\mathit{n}$ and $\mathit{a}$ are free variables. The corresponding SQL query can be written as:}}
+
+\subparagraph*{}
+\begin{lstlisting}[showstringspaces=false, language = SQL]
+SELECT P.name, P.age FROM Person P, Manages M, Lives L1, Lives L2 WHERE P.name = L1.person AND P.name = M.employee AND M.boss = L2.person AND L1.city = L2.city
+\end{lstlisting}
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\citation{DBLP:books/daglib/CPN_Book}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Coloured Petri Nets}{11}{chapter.3}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:CPN}{{3}{11}{Coloured Petri Nets}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Example}{11}{section.3.1}}
+\newlabel{sec:CPN_Example}{{3.1}{11}{Example}{section.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{\textnormal  {Let us consider an example representing a simple online taxi booking service (see Figure \ref  {fig:CPN_abstract_taxi_example}). To book a taxi the customer visits the web page. Upon visit, the booking service automatically generates a session identifier. To proceed with the booking process, the system checks for the available taxi. If the taxi is available, then the customer is asked to provide a phone number, pickup time and pickup address. Once the booking information is provided, the booking is finalised and the confirmation is shown to the user. If instead, no taxi is available, the user has to wait until a taxi is free.}}{11}{section*.38}}
+\citation{CPN_Tools}
+\citation{DBLP:books/daglib/Reisig2013}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces An abstract model for booking a taxi\relax }}{12}{figure.caption.37}}
+\newlabel{fig:CPN_abstract_taxi_example}{{3.1}{12}{An abstract model for booking a taxi\relax }{figure.caption.37}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Coloured Petri Nets (CPNs) Syntax}{12}{section.3.2}}
+\newlabel{sec:CPN_Syntax}{{3.2}{12}{Coloured Petri Nets (CPNs) Syntax}{section.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces CPN model for taxi booking\relax }}{12}{figure.caption.39}}
+\newlabel{fig:CPN_Taxi_Booking}{{3.2}{12}{CPN model for taxi booking\relax }{figure.caption.39}{}}
+\citation{milner1997definition}
+\citation{Jensen_CPN_Book_ML}
+\citation{CPN_Tools_ColourSet}
+\newlabel{defs:CPN_NonHeir}{{3.1}{17}{}{defs.3.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Colored Petri Nets (CPNs) Semantics}{18}{section.3.3}}
+\newlabel{sec:CPN_Semantics}{{3.3}{18}{Colored Petri Nets (CPNs) Semantics}{section.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{\textnormal  {In this section, we discuss about markings and binding elements. Later, we look at a step, enabling and occurrence of steps and when a step occurs how it effects the marking of the net. We also discuss the conditions when the transition is enabled. In the end, we discuss reachable markings and state spaces.}}{18}{section*.54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces CPN model for taxi booking\relax }}{18}{figure.caption.57}}
+\newlabel{fig:CPN_Taxi_Booking_initial_step}{{3.3}{18}{CPN model for taxi booking\relax }{figure.caption.57}{}}
+\@writefile{toc}{\contentsline {subparagraph}{\textnormal  {In a given marking, the enabling rule specifies when a step (consisting of a multiset of binding elements) becomes enabled, whereas the firing/occurrence rule specifies how the markings change when the enabled step occurs.}}{18}{figure.caption.57}}
+\newlabel{defs:2_7_step_marking}{{3.2}{20}{}{defs.3.2}{}}
+\newlabel{eq:binding_1}{{3.1}{21}{\textnormal {Let us look at the two conditions in our taxi booking example. Since we do not have any guards on our model the guard function evaluates to $\mathit {True}$ for all transitions in the model. Let us consider a binding element $\mathit {(Create\ Booking, b_{CB})}$ where \begin {equation} \label {eq:binding_1} b_{CB} = \langle s_{id} = 100, t_{id} = 47552, pn = \textnormal {"BR-03NA-5422"}\rangle \end {equation} Alternatively, $b_{CB}$ can also be chosen as: \begin {equation} \label {eq:binding_2} b_{CB} = \langle s_{id} = 101, t_{id} = 49209, pn = \textnormal {"BR-01AP-4392"}\rangle \end {equation} One of the important properties of CPN is non-determinism. Here, the values for the binding $\mathit {b_{CB}}$ can be chosen non-deterministically. Here, we will select the binding given in equation \ref {eq:binding_1}. From the input arcs of the $\mathit {Create\ Booking}$ transition, we have \begin {equation*} \begin {aligned} E(S\_ID, Create\ Booking)\langle b_{CB}\rangle =& {1}^{\backprime }100 \ll = {1}^{\backprime }100\ +\!\!+\ {1}^{\backprime }101\\ E(Free\ Taxi, Create\ Booking)\langle b_{CB}\rangle =& {1}^{\backprime }(47552,\textnormal {"BR-03NA-5422"})\\ & \ll = {1}^{\backprime }(49209,\textnormal {"BR-01AP-4392"}) +\!\!+\ \\ & {1}^{\backprime }(47552,\textnormal {"BR-03NA-5422"}) \end {aligned} \end {equation*}}}{equation.3.3.1}{}}
+\newlabel{eq:binding_2}{{3.2}{21}{\textnormal {Let us look at the two conditions in our taxi booking example. Since we do not have any guards on our model the guard function evaluates to $\mathit {True}$ for all transitions in the model. Let us consider a binding element $\mathit {(Create\ Booking, b_{CB})}$ where \begin {equation} \label {eq:binding_1} b_{CB} = \langle s_{id} = 100, t_{id} = 47552, pn = \textnormal {"BR-03NA-5422"}\rangle \end {equation} Alternatively, $b_{CB}$ can also be chosen as: \begin {equation} \label {eq:binding_2} b_{CB} = \langle s_{id} = 101, t_{id} = 49209, pn = \textnormal {"BR-01AP-4392"}\rangle \end {equation} One of the important properties of CPN is non-determinism. Here, the values for the binding $\mathit {b_{CB}}$ can be chosen non-deterministically. Here, we will select the binding given in equation \ref {eq:binding_1}. From the input arcs of the $\mathit {Create\ Booking}$ transition, we have \begin {equation*} \begin {aligned} E(S\_ID, Create\ Booking)\langle b_{CB}\rangle =& {1}^{\backprime }100 \ll = {1}^{\backprime }100\ +\!\!+\ {1}^{\backprime }101\\ E(Free\ Taxi, Create\ Booking)\langle b_{CB}\rangle =& {1}^{\backprime }(47552,\textnormal {"BR-03NA-5422"})\\ & \ll = {1}^{\backprime }(49209,\textnormal {"BR-01AP-4392"}) +\!\!+\ \\ & {1}^{\backprime }(47552,\textnormal {"BR-03NA-5422"}) \end {aligned} \end {equation*}}}{equation.3.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces A state of the CPN model for taxi booking\relax }}{22}{figure.caption.68}}
+\newlabel{fig:CPN_Taxi_Booking_one_step}{{3.4}{22}{A state of the CPN model for taxi booking\relax }{figure.caption.68}{}}
+\newlabel{defs:enabling_binding_cpn}{{3.3}{23}{}{defs.3.3}{}}
+\newlabel{defs:enabling_steps_cpn}{{3.4}{24}{}{defs.3.4}{}}
+\newlabel{defs:finite_occurrence_seq}{{3.5}{24}{}{defs.3.5}{}}
+\newlabel{defs:state_space}{{3.6}{25}{}{defs.3.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Revised CPN model showing a state for taxi booking example\relax }}{26}{figure.caption.80}}
+\newlabel{fig:CPN_Taxi_Booking_simple}{{3.5}{26}{Revised CPN model showing a state for taxi booking example\relax }{figure.caption.80}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces State Space for CPN model in Figure \ref  {fig:CPN_Taxi_Booking_simple}\relax }}{26}{figure.caption.81}}
+\newlabel{fig:CPN_State_Space}{{3.6}{26}{State Space for CPN model in Figure \ref {fig:CPN_Taxi_Booking_simple}\relax }{figure.caption.81}{}}
+\@setckpt{guide_ch3}{
+\setcounter{page}{28}
+\setcounter{equation}{2}
+\setcounter{enumi}{2}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{8}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{3}
+\setcounter{section}{3}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{6}
+\setcounter{table}{0}
+\setcounter{theorem}{0}
+\setcounter{parentequation}{0}
+\setcounter{LT@tables}{0}
+\setcounter{LT@chunks}{0}
+\setcounter{r@tfl@t}{0}
+\setcounter{ContinuedFloat}{0}
+\setcounter{subfigure}{0}
+\setcounter{subtable}{0}
+\setcounter{@todonotes@numberoftodonotes}{0}
+\setcounter{lstnumber}{2}
+\setcounter{Item}{26}
+\setcounter{Hfootnote}{11}
+\setcounter{bookmark@seq@number}{13}
+\setcounter{lem}{0}
+\setcounter{thm}{0}
+\setcounter{prop}{0}
+\setcounter{post}{0}
+\setcounter{corr}{0}
+\setcounter{defs}{6}
+\setcounter{cons}{0}
+\setcounter{ex}{0}
+\setcounter{qu}{0}
+\setcounter{lstlisting}{0}
+\setcounter{section@level}{5}
+}
