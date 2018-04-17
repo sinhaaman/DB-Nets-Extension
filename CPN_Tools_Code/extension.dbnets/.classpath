@@ -12,5 +12,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/org.cpntools.accesscpn.engine.highlevel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.cpntools.accesscpn.model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.cpntools.accesscpn.model.importer"/>
+	<classpathentry kind="src" path="/org.cpntools.accesscpn.engine"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
